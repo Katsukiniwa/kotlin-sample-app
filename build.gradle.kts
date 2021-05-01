@@ -37,7 +37,6 @@ dependencies {
 }
 
 jooq {
-//	version.set("3.14.7")
 	edition.set(JooqEdition.OSS)
 
 	configurations {
@@ -52,19 +51,9 @@ jooq {
 					properties.add(Property().withKey("PAGE_SIZE").withValue("2048"))
 				}
 				generator.apply {
-					name = "org.jooq.codegen.DefaultGenerator"
+					name = "org.jooq.codegen.KotlinGenerator"
 					database.apply {
 						name = "org.jooq.meta.mysql.MySQLDatabase"
-						forcedTypes.addAll(arrayOf(
-								ForcedType()
-										.withName("varchar")
-										.withIncludeExpression(".*")
-										.withIncludeTypes("JSONB?"),
-								ForcedType()
-										.withName("varchar")
-										.withIncludeExpression(".*")
-										.withIncludeTypes("INET")
-						).toList())
 					}
 					generate.apply {
 						isDeprecated = false
@@ -93,3 +82,5 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
+
+tasks.named<nu.studer.gradle.jooq.JooqGenerate>("generateJooq") { allInputsDeclared.set(true) }
