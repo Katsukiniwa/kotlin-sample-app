@@ -9,3 +9,6 @@ CREATE TABLE `articles` (
   `title` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
+
+INSERT INTO users VALUES (1,'test');
+INSERT INTO articles VALUES (1,'sample');
