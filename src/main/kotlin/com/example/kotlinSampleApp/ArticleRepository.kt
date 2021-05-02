@@ -2,8 +2,6 @@ package com.example.kotlinSampleApp
 
 import nu.studer.sample.kotlin_sample_app.tables.references.ARTICLES
 import org.jooq.DSLContext
-import org.jooq.Record
-import org.jooq.Result
 import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 
@@ -12,10 +10,11 @@ import org.springframework.transaction.annotation.Transactional
 class ArticleRepository(
         private val dslContext: DSLContext
 ) {
-    fun selectAll(): Result<Record> {
+    fun selectAll(): String? {
         return dslContext
                 .select()
                 .from(ARTICLES)
                 .fetch()
+                .formatJSON()
     }
 }

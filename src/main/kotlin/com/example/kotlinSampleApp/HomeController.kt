@@ -8,9 +8,7 @@ class HomeController(
         val articleRepository: ArticleRepository
 ) {
     @GetMapping("/")
-    fun home(): String {
-        val articles = articleRepository.selectAll()
-        print(articles)
-        return "hello world"
+    fun home(): String? {
+        return articleRepository.selectAll()
     }
 }
