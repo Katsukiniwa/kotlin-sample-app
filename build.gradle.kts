@@ -6,6 +6,7 @@ plugins {
 	id("org.springframework.boot") version "2.4.5"
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	id("nu.studer.jooq") version "5.2.1"
+	id ("org.flywaydb.flyway") version "7.8.2"
 	kotlin("jvm") version "1.4.32"
 	kotlin("plugin.spring") version "1.4.32"
 	kotlin("plugin.jpa") version "1.4.32"
@@ -33,6 +34,13 @@ dependencies {
 	jooqGenerator("mysql:mysql-connector-java")
 	runtimeOnly("mysql:mysql-connector-java")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+flyway {
+	url = "jdbc:mysql://127.0.0.1:3306/kotlin_sample_app"
+	user = "root"
+	password = "password"
+	locations = arrayOf("filesystem:src/main/resources/db/migration")
 }
 
 jooq {
