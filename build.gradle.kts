@@ -7,9 +7,9 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.11.RELEASE"
 	id("nu.studer.jooq") version "5.2.1"
 	id ("org.flywaydb.flyway") version "7.8.2"
-	kotlin("jvm") version "1.4.32"
-	kotlin("plugin.spring") version "1.4.32"
-	kotlin("plugin.jpa") version "1.4.32"
+	kotlin("jvm") version "1.4.21"
+	kotlin("plugin.spring") version "1.4.21"
+	kotlin("plugin.jpa") version "1.4.21"
 }
 
 group = "com.example"
