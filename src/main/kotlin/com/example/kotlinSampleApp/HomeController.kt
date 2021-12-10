@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*
 class HomeController(
         val articleRepository: ArticleRepository
 ) {
-    @GetMapping("/")
+    @GetMapping("")
     fun home(): String? {
         return articleRepository.selectAll()
     }
