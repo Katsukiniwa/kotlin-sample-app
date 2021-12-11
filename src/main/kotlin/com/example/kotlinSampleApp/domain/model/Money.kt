@@ -96,15 +96,75 @@ public final class Money private constructor(private val amount: BigDecimal, pri
         }
     }
 
-    override fun compareTo(other: Money): Int {
-        if (currency != other.currency) throw Exception("currency miss match")
-        return amount.compareTo(other.amount)
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || other.javaClass.kotlin != javaClass) return false
         val money = other as Money
         return Objects.equals(amount, money) && Objects.equals(currency, money.currency)
+    }
+
+    override fun toString(): String {
+        return "Money{amount=$amount, currency=$currency}"
+    }
+
+    override fun compareTo(other: Money): Int {
+        if (currency != other.currency) throw Exception("currency miss match")
+        return amount.compareTo(other.amount)
+    }
+
+    fun isGreaterThan(other: Money): Boolean {
+        return compareTo(other) > 0
+    }
+
+    fun isLessThan(other: Money): Boolean {
+        return compareTo(other) < 0
+    }
+
+    fun isNegative(): Boolean {
+        return amount < BigDecimal.ZERO
+    }
+
+    fun isPositive(): Boolean {
+        return amount > BigDecimal.ZERO
+    }
+
+    fun isZero(): Boolean {
+        return equals(adjustBy(BigDecimal.valueOf(0.0), currency))
+    }
+
+    fun nonZero(): Boolean {
+        return !isZero()
+    }
+
+    /**
+     * 正を負に、負を正に反転させる
+     *
+     * @return {@link Money}
+     */
+    fun negated(): Money {
+        return Money(amount.negate(), currency)
+    }
+
+    /**
+     * お金を加算する
+     *
+     * @param other {@link Money}
+     * @return Money {@link Money}
+     */
+    fun add(other: Money): Money {
+        checkHasSameCurrencyAs(other)
+        return adjustBy(amount.add(other.amount), currency)
+    }
+
+    private fun hasSameCurrencyAs(arg: Money): Boolean {
+        return currency == arg.currency
+                || arg.amount == BigDecimal.ZERO
+                || amount == BigDecimal.ZERO
+    }
+
+    private fun checkHasSameCurrencyAs(other: Money) {
+        if (!hasSameCurrencyAs(other)) {
+            throw Exception(other.toString() + " is not same currency as " + toString())
+        }
     }
 }
