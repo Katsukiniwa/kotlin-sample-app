@@ -13,4 +13,17 @@ class Party {
             memberPaymentTypes: MemberPaymentTypes,
 //            differenceAmountAdjustmentType: DifferenceAmountAdjustmentType
     )
+
+    /**
+     * 請求金額の割り勘を行う。
+     *
+     * @param billingAmount {@link BillingAmount}
+     * @param paymentTypeAmountRates {@link PaymentTypeAmountRates}
+     * @return {@link MemberPaymentAmounts}
+     */
+    public fun warikan(billingAmount: BillingAmount, paymentTypeAmountRates: PaymentTypeAmountRates): MemberPaymentAmounts {
+        /**
+         * TODO: 実装する
+         */
+    }
 }
