@@ -1,5 +1,8 @@
 package com.example.kotlinSampleApp.domain.model.party
 
+import com.example.kotlinSampleApp.domain.model.amount.BillingAmount
+import com.example.kotlinSampleApp.domain.model.amount.MemberPaymentAmounts
+import com.example.kotlinSampleApp.domain.model.amount.rate.PaymentTypeAmountRates
 import com.example.kotlinSampleApp.domain.model.amount.types.MemberPaymentTypes
 import com.example.kotlinSampleApp.domain.model.members.Members
 import java.util.*
