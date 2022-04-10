@@ -25,7 +25,6 @@ class Article private constructor(
         fun create(
                 title: String,
                 content: String,
-                comments: List<Comment>,
                 publishedAt: LocalDate,
                 withdrewAt: LocalDate,
         ): Article {
@@ -33,7 +32,7 @@ class Article private constructor(
                     UUID.randomUUID(),
                     title,
                     content,
-                    comments,
+                    mutableListOf(),
                     publishedAt,
                     withdrewAt,
             )
